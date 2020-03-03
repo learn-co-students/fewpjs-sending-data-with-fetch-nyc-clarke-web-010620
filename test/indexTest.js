@@ -8,6 +8,7 @@ describe( "submitData()", () => {
   let rando
   let xhr, requests
   beforeEach( function () {
+    this.timeout(0)
     window.fetch = require( 'node-fetch' );
 
     rando = Math.ceil( Math.random() * 1000 )
@@ -20,6 +21,7 @@ describe( "submitData()", () => {
   } );
 
   it( "makes a POST request to /user with a name and email", async () => {
+    this.timeout(0)
     let reqBody
     let headers
     nock( 'http://localhost:3000' )
@@ -54,6 +56,7 @@ describe( "submitData()", () => {
   } )
 
   it( "handles the POST request response, retrieves the new id value and appends it to the DOM", async function () {
+    this.timeout(0)
     nock( 'http://localhost:3000' )
       .post( '/users' )
       .reply( 201, function ( uri, requestBody ) {
@@ -73,6 +76,7 @@ describe( "submitData()", () => {
   } );
 
   it( "handles a failed POST request using catch, appends the error message to the DOM", async function () {
+    this.timeout(0)
     let message = 'Unauthorized Access'
     nock( 'http://localhost:3000' )
       .post( '/users' )
